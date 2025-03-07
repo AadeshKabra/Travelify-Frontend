@@ -165,8 +165,6 @@
                 console.error(error.response.data);
             }
         }
-        
-        
     }
 
     onMounted(() => {
