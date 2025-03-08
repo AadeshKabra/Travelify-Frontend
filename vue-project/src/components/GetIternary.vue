@@ -103,7 +103,7 @@
                 </fieldset>
             </div>
 
-            <button class="button iternary-button">Get Iternary</button>
+            <button class="button iternary-button" type="submit" v-on:click="getIternary">Get Iternary</button>
             
         </div>
     </div>
@@ -112,6 +112,46 @@
 
 <script setup>
 
+    import axiosRequest from '../../axios_api';
+
+    async function submitIternary(payload){
+        try{
+            const response = await axiosRequest.post("/submitIternary", {params: payload});
+            console.log(response.data);
+        } catch(error){
+            console.error(error);
+        }
+    }
+
+    function getIternary(){
+        let destination = document.getElementById("destination").value;
+        let date = document.getElementById("date").value;
+        let adults = document.getElementById("adults").value;
+        let children = document.getElementById("children").value;
+        let minBudget = document.getElementById("min-budget").value;
+        let maxBudget = document.getElementById("max-budget").value;
+        let days = document.getElementById("days").value;
+        let description = document.getElementById("description").value;
+        let interests = [];
+        document.querySelectorAll("iternary-interests input[type='checkbox']:checked")
+        .forEach((checkbox)=>{
+            interests.push(checkbox.id);
+        });
+
+        let payload = {
+            destination: destination,
+            date: date,
+            adults: adults,
+            children: children,
+            minBudget: minBudget,
+            maxBudget: maxBudget,
+            days: days,
+            description: description,
+            interests: interests
+        }
+
+        submitIternary(payload);
+    }
 </script>
 
 

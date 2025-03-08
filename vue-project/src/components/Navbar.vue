@@ -2,7 +2,10 @@
     <div class="nav">
         <h2 class="title">Travelify</h2>
         <div class="search-flights">
-            <router-link to="/search-flights" class="search-route">Search Flights</router-link>
+            <router-link to="/search-flights" class="search-route">Flights</router-link>
+        </div>
+        <div class="search-hotels">
+            <router-link to="/search-hotels" class="search-route">Hotels</router-link>
         </div>
         <!-- <div class="search-flights">Search Flights</div> -->
         <div v-if="store.name" class="name">
@@ -77,18 +80,22 @@ async function signup(){
         font-family: "Mulish", sans-serif;
     }
 
-    .search-flights{
-        margin-left: 2em;
+    .search-flights, .search-hotels{
+        margin-left: 1em;
         display: flex;
         align-items: center;
         justify-content: center;
         font-family: "Mulish", sans-serif;
         font-size: 1.5em;
         height: 100%;
-        width: 7em;
+        width: 4em;
     }
 
-    .search-flights:hover{
+    .search-hotels{
+        margin-left: 0.5em;
+    }
+
+    .search-flights:hover, .search-hotels:hover{
         background-color: #9ACBD0;
         cursor: pointer;
     }

@@ -1,6 +1,6 @@
 <template>
     <div class="search-template">
-        <h2 class="search-heading">Where are you planning to go?</h2>
+        <h2 class="search-heading">Your next destination awaits...</h2>
         <div class="search-box">
 
             <div class="departure search-box-item">
@@ -34,8 +34,9 @@
         <button type="submit" id="search-button" class="button search-button" v-on:click="searchFlights">Search</button>
     </div>
 
+    <!-- Best Flights -->
     <div class="search-results" v-if="bestFlights && bestFlights.length > 0">
-        <h2>Best Flights</h2>
+        <h2 class="search-results-heading">Best Flights</h2>
         <div class="best-flights">
             <div class="flight-card" v-for="(flight, index) in bestFlights" :key="index">
                 <div class=airline-card>
@@ -58,9 +59,43 @@
                     
                 </div>
                 <div class="other-detail-card">
-                    <p>Duration: {{ flight.total_duration }}</p>
-                    <p>Price: {{ flight.price }}</p>
-                    <p>Carbon Emission: {{ flight.carbon_emissions.this_flight }}</p>
+                    <p>Duration: {{ flight.total_duration }} minutes</p>
+                    <p>Price: &#8377; {{ flight.price }}</p>
+                    <p>Carbon Emission: {{ flight.carbon_emissions.this_flight }} kg CO₂e </p>
+                </div>
+                <!-- <p>{{ flight }}</p> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Other Flights -->
+    <div class="search-results" v-if="otherFlights && otherFlights.length > 0">
+        <h2 class="search-results-heading">Other Flights</h2>
+        <div class="other-flights">
+            <div class="flight-card" v-for="(flight, index) in otherFlights" :key="index">
+                <div class=airline-card>
+                    <img :src="flight.flights[0].airline_logo" class="airline-logo">
+                    <p>{{ flight.flights[0].airline }}</p>
+                    <p>{{ flight.flights[0].airplane }}</p>
+                    <p>{{ flight.flights[0].flight_number }}</p>
+                </div>
+                <div class="flight-detail-card">
+                    <div class="iata-codes">
+                        <h2 classs="iata-codes-data">{{ flight.flights[0].departure_airport.id }}</h2>
+                        <font-awesome-icon :icon="['fass', 'arrow-right']" style="color: #48a6a7;" class="iata-codes-data"/>
+                        <h2 class="iata-codes-data">{{ flight.flights[0].arrival_airport.id }}</h2>
+                    </div>
+                    <div class="airport-names">
+                        <p>{{ flight.flights[0].departure_airport.name }} to {{ flight.flights[0].arrival_airport.name }}</p>
+                        <!-- <p>{{ flight.flights[0].arrival_airport.name }}</p> -->
+                         <p>{{ flight.flights[0].departure_airport.time }}   =>   {{ flight.flights[0].arrival_airport.time }}</p>
+                    </div>
+                    
+                </div>
+                <div class="other-detail-card">
+                    <p>Duration: {{ flight.total_duration }} minutes</p>
+                    <p>Price: &#8377; {{ flight.price }}</p>
+                    <p>Carbon Emission: {{ flight.carbon_emissions.this_flight }} kg CO₂e </p>
                 </div>
                 <!-- <p>{{ flight }}</p> -->
             </div>
@@ -239,7 +274,7 @@
         font-family: "Mulish", sans-serif;
         border: 1px solid #48a6a7;
         color: #000000;
-        width: 5em;
+        width: max-content;
     }
 
     .search-button:hover{
@@ -260,6 +295,11 @@
         margin-top: 5em;
     }
 
+    .search-results-heading{
+        font-family: "Noto Serif", serif;
+        font-size: 2em;
+    }
+
     .flight-card{
         display: flex;
         flex-direction: row;
@@ -278,6 +318,11 @@
         justify-content: center;
         align-items: center;
         margin-left: 1em;
+    }
+
+    .airline-logo{
+        height: 50px;
+        width: 50px;
     }
 
     .flight-detail-card{
@@ -301,6 +346,7 @@
 
     .iata-codes-data{
         margin-left: 1em;
+        font-family: "Noto Serif", serif;
     }
 
     .airport-names{

@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AuthGoogle from '@/components/AuthGoogle.vue'
 import SearchFlights from '@/components/SearchFlights.vue'
+import SearchHotels from '@/components/SearchHotels.vue'
 import GetIternary from '@/components/GetIternary.vue'
+import Hotels from '@/components/Hotels.vue'
 import Home from '@/components/Home.vue'
 
 const router = createRouter({
@@ -21,6 +23,16 @@ const router = createRouter({
       path: "/search-flights",
       name: "searchFlights",
       component: SearchFlights
+    },
+    {
+      path: "/search-hotels",
+      name: "searchHotels",
+      component: SearchHotels
+    },
+    {
+      path: "/hotels/:location",
+      name: "hotels",
+      component: Hotels
     },
     {
       path: "/get-iternary",
