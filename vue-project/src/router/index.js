@@ -5,6 +5,7 @@ import SearchHotels from '@/components/SearchHotels.vue'
 import GetIternary from '@/components/GetIternary.vue'
 import Hotels from '@/components/Hotels.vue'
 import Home from '@/components/Home.vue'
+import GetHotels from '@/components/getHotels.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,7 +31,12 @@ const router = createRouter({
       component: SearchHotels
     },
     {
-      path: "/hotels/:location",
+      path: "/getHotels",
+      name: "getHotels",
+      component: GetHotels
+    },
+    {
+      path: "/hotels/:name",
       name: "hotels",
       component: Hotels
     },

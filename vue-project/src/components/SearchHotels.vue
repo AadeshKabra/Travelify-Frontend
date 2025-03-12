@@ -71,8 +71,11 @@
         let response = await axiosRequest.post("/searchHotels", payload);
         console.log(response.data);
         // console.log(response.data.search_parameters.q);
-        router.push({path: `/hotels/${response.data.search_parameters.q}`, query: response.data});
-    }
+        router.push({
+            path: `/getHotels`,
+            query: { data: encodeURIComponent(JSON.stringify(response.data)), payload: encodeURIComponent(JSON.stringify(payload))}
+            });
+        }
 </script>
 
 
