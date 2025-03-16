@@ -59,26 +59,25 @@
     let brands = data["brands"];
     let properties = data["properties"];
 
-    console.log("Search Information", search_information)
-    console.log("Properties", properties);
+    // console.log("Search Information", search_information)
+    // console.log("Properties", properties);
 
-    function getHotelInformation(property_token, name){
+    async function getHotelInformation(property_token, name){
         console.log("Payload: ", payload);
         console.log("Property Token: ", property_token);
-
-        
         try{
-            let response = axiosRequest.post("/getHotelInformation", {payload: payload, property_token: property_token});
+            let response = await axiosRequest.post("/getHotelInformation", {payload: payload, property_token: property_token, name: name});
             console.log(response.data);
-            
+
+            router.push({
+                path: `/hotels/${property_token}`,
+                query: {payload: encodeURIComponent(JSON.stringify(payload)), hotelData: encodeURIComponent(JSON.stringify(response.data)), name: name}
+            });
+
         } catch (error){
             console.error(error);
         }
-        
-        // router.push({
-            // path: `/hotels/${name}`,
-            // query: { payload: encodeURIComponent(JSON.stringify(payload)), propertyToken: property_token, name: name}
-        // })
+
     }
 
 </script>
@@ -124,6 +123,7 @@
         width: 50em;
         padding: 1em;
         gap: 2em;
+        cursor: pointer;
     }
 
     .hotel-name{

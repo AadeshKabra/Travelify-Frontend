@@ -36,7 +36,7 @@ const router = createRouter({
       component: GetHotels
     },
     {
-      path: "/hotels/:name",
+      path: "/hotels/:id",
       name: "hotels",
       component: Hotels
     },
