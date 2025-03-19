@@ -2,10 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AuthGoogle from '@/components/AuthGoogle.vue'
 import SearchFlights from '@/components/SearchFlights.vue'
 import SearchHotels from '@/components/SearchHotels.vue'
-import GetIternary from '@/components/GetIternary.vue'
+import GetIternary from '@/components/GetItinerary.vue'
 import Hotels from '@/components/Hotels.vue'
 import Home from '@/components/Home.vue'
 import GetHotels from '@/components/getHotels.vue'
+import Itinerary from '@/components/Itinerary.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
       path: "/get-iternary",
       name: "getIternary",
       component: GetIternary
+    },
+    {
+      path: "/itinerary",
+      name: "itinerary",
+      component: Itinerary
     }
   ],
 })

@@ -32,12 +32,12 @@
                 <div class="iternary-budget iternary-item">
                     <div class="iternary-budget-min">
                         <label for="min-budget" class="min-budget-label iternary-label">Min Budget: </label>
-                        <input type="number" id="min-budget" class="min-budget iternary-input" name="min-budget" min="1000">
+                        <input type="number" id="min-budget" class="min-budget iternary-input" name="min-budget" min="1000" step="1000">
                     </div>
                     
                     <div class="iternary-budget-max">
                         <label for="max-budget" class="max-budget-label iternary-label">Max Budget: </label>
-                        <input type="number" id="max-budget" class="max-budget iternary-input" name="max-budget" min="1000">
+                        <input type="number" id="max-budget" class="max-budget iternary-input" name="max-budget" min="1000" step="1000">
                     </div>
 
                     <div class="iternary-budget-days">
@@ -61,40 +61,40 @@
                     
                     <div class="iternary-options-set-1">
                         <div class="interests-option">
-                            <input type="checkbox" id="luxury" name="luxury"/>
-                            <label for="luxury" class="interests">Luxury</label>
+                            <input type="checkbox" id="Luxury" name="Luxury"/>
+                            <label for="Luxury" class="interests">Luxury</label>
                         </div>
 
                         <div class="interests-option">
-                            <input type="checkbox" id="adventure" name="adventure"/>
-                            <label for="adventure" class="interests">Adventure</label>
+                            <input type="checkbox" id="Adventure" name="Adventure"/>
+                            <label for="Adventure" class="interests">Adventure</label>
                         </div>
 
                         <div class="interests-option">
-                            <input type="checkbox" id="backpacking" name="backpacking"/>
-                            <label for="backpacking" class="interests">Backpacking</label>
+                            <input type="checkbox" id="Backpacking" name="Backpacking"/>
+                            <label for="Backpacking" class="interests">Backpacking</label>
                         </div>
 
                         <div class="interests-option">
-                            <input type="checkbox" id="business" name="business"/>
-                            <label for="business" class="interests">Business</label>
+                            <input type="checkbox" id="Business" name="Business"/>
+                            <label for="Business" class="interests">Business</label>
                         </div>
                     </div>
 
                     <div class="iternary-options-set-2">
                         <div class="interests-option">
-                            <input type="checkbox" id="romantic" name="romantic"/>
-                            <label for="romantic" class="interests">Romantic</label>
+                            <input type="checkbox" id="Romantic" name="Romantic"/>
+                            <label for="Romantic" class="interests">Romantic</label>
                         </div>
 
                         <div class="interests-option">
-                            <input type="checkbox" id="cultural" name="cultural"/>
-                            <label for="cultural" class="interests">Cultural</label>
+                            <input type="checkbox" id="Cultural" name="Cultural"/>
+                            <label for="Cultural" class="interests">Cultural</label>
                         </div>
 
                         <div class="interests-option">
-                            <input type="checkbox" id="spiritual" name="spiritual"/>
-                            <label for="spiritual" class="interests">Spiritual</label>
+                            <input type="checkbox" id="Spiritual" name="Spiritual"/>
+                            <label for="Spiritual" class="interests">Spiritual</label>
                         </div>
 
                         
@@ -111,13 +111,21 @@
 
 
 <script setup>
-
     import axiosRequest from '../../axios_api';
+    import { useRouter } from "vue-router";
+
+    const router = useRouter();
+    
 
     async function submitIternary(payload){
         try{
             const response = await axiosRequest.post("/submitIternary", {params: payload});
             console.log(response.data);
+
+            router.push({
+                path: '/itinerary',
+                query: {itinerary: encodeURIComponent(JSON.stringify(response.data)), payload: payload}
+            });
         } catch(error){
             console.error(error);
         }
@@ -132,8 +140,9 @@
         let maxBudget = document.getElementById("max-budget").value;
         let days = document.getElementById("days").value;
         let description = document.getElementById("description").value;
+        
         let interests = [];
-        document.querySelectorAll("iternary-interests input[type='checkbox']:checked")
+        document.querySelectorAll(".iternary-interests input[type='checkbox']:checked")
         .forEach((checkbox)=>{
             interests.push(checkbox.id);
         });

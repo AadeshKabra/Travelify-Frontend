@@ -1,4 +1,5 @@
 <template>
+    <!-- {{ hotelData }} -->
     <h1 class="hotel-name">{{ name }}</h1>
 
     <div class="hotel-info">
@@ -53,14 +54,26 @@
             </div>
 
             <!-- Hotel Reviews -->
+            <h2 class="review-heading">Reviews</h2>
              <div class="hotel-reviews">
-                <h2 class="review-heading">Reviews</h2>
                 <div v-for="(rating, index) in hotelData.ratings" :key="index" class="rating-stars">
                     <div v-for="n in rating.stars" :key="n" class="star-container">
                         <img src="../assets/star.png" class="star-icon">
                     </div>
                     <p class="rating-count">{{ rating.count }}</p>
                 </div>
+             </div>
+            
+             <!-- Hotel Nearby Places -->
+             <h2 class="nearby-heading">Nearby Places</h2>
+             <div class="hotel-nearby">
+                <div class="nearby-place" v-for="(place, index) in visibleNearbyPlaces" :key="index" @click="openNearbyPlace(place.link)">
+                    <img :src="place.thumbnail" class="nearby-place-image">
+                    <p class="place-name">{{ place.name }}</p>
+                    
+                </div>
+
+                <button v-if="hotelData.nearby_places.length > 6" class="show-more-btn" @click="showAll = !showAll">  {{ showAll ? "Show Less" : "Show All Nearby Places" }}"</button>
              </div>
 
         </div>
@@ -118,6 +131,16 @@
         const googleMapsUrl = `https://www.google.com/maps?q=${lat},${long}`;
         window.open(googleMapsUrl, "_blank");
     }
+
+    const openNearbyPlace = (link) => {
+        window.open(link, "_blank");
+    }
+
+    const showAll = ref(false);
+
+    const visibleNearbyPlaces = computed(() => {
+        return showAll.value ? hotelData.nearby_places : hotelData.nearby_places.slice(0, 6)
+    });
 
 </script>
 
@@ -357,13 +380,9 @@
     .rating-stars{
         display: flex;
         flex-direction: row;
-        justify-content: left;
+        justify-content: flex-start;
         align-items: center;
         gap: 1em;
-    }
-
-    .rating-count{
-        align-text: right;
     }
 
     .star-container {
@@ -384,6 +403,72 @@
 
     .hotel-reviews{
         margin-top: 2em;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: flex-start;
+        text-align: left;
+        margin-left: 2em;
+    }
+
+    .hotel-nearby{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .nearby-heading{
+        text-align: center;
+    }
+
+    .nearby-place{
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 calc(33.33% - 16px);
+        max-width: calc(33.33% - 16px);
+        box-sizing: border-box;
+        cursor: pointer;
+        text-align: center;
+        border: 2px solid #48A6A7;
+        margin-top: 1em;
+        border-radius: 10px;
+    }
+
+    .nearby-place:hover{
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+        transform: translateY(-2px); /* Slight upward movement */
+        background-color: #F2EFE7; /* Darker blue */
+        cursor: pointer;
+    }
+
+    .nearby-place-image{
+        height: 150px;
+        width: 100%;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+    }
+
+    .place-location{
+        text-align: right;
+        margin-left: auto;
+    }
+
+    .show-more-btn{
+        width: 100%;
+        border-radius: 5px;
+        background-color: #9ACBD0;
+        font-family: "Mulish", sans-serif;
+        border: 1px solid #48a6a7;
+        color: #000000;
+        height: 4em;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .nearby-heading, .review-heading{
+        font-family: "Noto Serif", serif;
     }
 
 </style>
