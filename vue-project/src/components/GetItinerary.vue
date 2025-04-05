@@ -254,7 +254,7 @@
 
     .description{
         width: 600px;
-        heigth: 500px;
+        height: 200px;
         resize: none;
         padding: 1em;
         border: 1px solid #000000;

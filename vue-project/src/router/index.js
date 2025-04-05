@@ -5,8 +5,9 @@ import SearchHotels from '@/components/SearchHotels.vue'
 import GetIternary from '@/components/GetItinerary.vue'
 import Hotels from '@/components/Hotels.vue'
 import Home from '@/components/Home.vue'
-import GetHotels from '@/components/getHotels.vue'
+import getHotels from '@/components/GetHotels.vue'
 import Itinerary from '@/components/Itinerary.vue'
+import Pic2Places from '@/components/Pic2Places.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,9 +33,14 @@ const router = createRouter({
       component: SearchHotels
     },
     {
+      path: "/search-place",
+      name: "searchPlace",
+      component: Pic2Places
+    },
+    {
       path: "/getHotels",
       name: "getHotels",
-      component: GetHotels
+      component: getHotels
     },
     {
       path: "/hotels/:id",

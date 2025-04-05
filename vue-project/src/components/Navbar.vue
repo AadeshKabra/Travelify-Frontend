@@ -7,6 +7,9 @@
         <div class="search-hotels">
             <router-link to="/search-hotels" class="search-route">Hotels</router-link>
         </div>
+        <div class="search-place">
+            <router-link to="/search-place" class="search-route">Pic2Place</router-link>
+        </div>
         <!-- <div class="search-flights">Search Flights</div> -->
         <div v-if="store.name" class="name">
             <img src="../assets/user.png" class="img-user">
@@ -80,7 +83,7 @@ async function signup(){
         font-family: "Mulish", sans-serif;
     }
 
-    .search-flights, .search-hotels{
+    .search-flights, .search-hotels, .search-place{
         margin-left: 1em;
         display: flex;
         align-items: center;
@@ -88,14 +91,23 @@ async function signup(){
         font-family: "Mulish", sans-serif;
         font-size: 1.5em;
         height: 100%;
-        width: 4em;
+        width: max-content;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
     }
 
     .search-hotels{
         margin-left: 0.5em;
     }
 
-    .search-flights:hover, .search-hotels:hover{
+    .search-place{
+        margin-left: 0.5em;
+        width: max-content;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+
+    .search-flights:hover, .search-hotels:hover, .search-place:hover{
         background-color: #9ACBD0;
         cursor: pointer;
     }
