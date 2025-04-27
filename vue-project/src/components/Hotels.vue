@@ -409,6 +409,10 @@
         align-items: flex-start;
         text-align: left;
         margin-left: 2em;
+        border: 2px solid #48A6A7;
+        border-radius: 10px;
+        padding: 15px;
+        margin-right: 2em;
     }
 
     .hotel-nearby{

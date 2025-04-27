@@ -1,5 +1,6 @@
 <template>
     <h1 class="heading">Pic 2 Place</h1>
+    <h1 class="heading">Choose Picture, we'll find its Location!</h1>
     <div class="image-container">
         <form class="form">
             <input type="file" accept="image/*" @change="handleImageUpload" class="image-input" 

@@ -1,5 +1,5 @@
 <template>
-    <div class="iternary-container">
+    <div class="iternary-container" id="iternary-container">
         <h2 class="iternary-heading">Get Iternary</h2>
 
         <div class="iternary-details">
@@ -107,6 +107,11 @@
             
         </div>
     </div>
+
+    <div v-if="loading" class="loading-container">
+        <div class="spinner"></div>
+        <p>Processing Image...</p>
+    </div>
 </template>
 
 
@@ -119,6 +124,10 @@
 
     async function submitIternary(payload){
         try{
+            let iternaryForm = document.getElementById("iternary-container");
+            iternaryForm.style.display = "none";
+
+
             const response = await axiosRequest.post("/submitIternary", {params: payload});
             console.log(response.data);
 
@@ -287,5 +296,27 @@
 
     .interests-option{
         margin-left: 1em;
+    }
+
+    .loading-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1em;
+    }
+
+    .spinner{
+        width: 40px;
+        height: 40px;
+        border: 5px solid #cccccc;
+        border-top-color: #48a6a7;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 </style>
