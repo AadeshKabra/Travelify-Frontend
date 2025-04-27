@@ -1,39 +1,51 @@
 <template>
-    <div class="search-template">
-        <h2 class="search-heading">Find your perfect stay!</h2>
-        <div class="search-box">
-            <div class="search-destination">
-                <input type="text" class="destination" placeholder="Hotels in..." id="destination">
-                <img src="../assets/search.png" class="search-icon">
-            </div>
-
-            <div class="search-dates">
-                <div class="search-dates-checkin">
-                    <label for="checkin-date">Checkin: </label>
-                    <input type="date" class="checkin-date" name="checkin-date" id="checkin-date">
-                </div>
-                
-                <div class="search-dates-checkout">
-                    <label for="checkout-date">Checkout: </label>
-                    <input type="date" class="checkout-date" name="checkout-date" id="checkout-date">
-                </div>
-            </div>
-
-            <div class="search-people">
-                <div class="search-people-adults">
-                    <label for="adults">Adults: </label>
-                    <input type="number" class="adults" name="adults" min="1" id="adults">
+    <div class="content-container">
+        <div class="content-left">
+            <div class="search-template">
+            <h2 class="search-heading">Find your perfect stay!</h2>
+            <div class="search-box">
+                <div class="search-destination">
+                    <input type="text" class="destination" placeholder="Hotels in..." id="destination">
+                    <img src="../assets/search.png" class="search-icon">
                 </div>
 
-                <div class="search-people-children">
-                    <label for="children">Children: </label>
-                    <input type="number" class="children" name="children" min="0" id="children">
+                <div class="search-dates">
+                    <div class="search-dates-checkin">
+                        <label for="checkin-date">Checkin: </label>
+                        <input type="date" class="checkin-date" name="checkin-date" id="checkin-date">
+                    </div>
+                    
+                    <div class="search-dates-checkout">
+                        <label for="checkout-date">Checkout: </label>
+                        <input type="date" class="checkout-date" name="checkout-date" id="checkout-date">
+                    </div>
+                </div>
+
+                <div class="search-people">
+                    <div class="search-people-adults">
+                        <label for="adults">Adults: </label>
+                        <input type="number" class="adults" name="adults" min="1" id="adults">
+                    </div>
+
+                    <div class="search-people-children">
+                        <label for="children">Children: </label>
+                        <input type="number" class="children" name="children" min="0" id="children">
+                    </div>
                 </div>
             </div>
+
+            <button type="submit" class="button hotels-button" id="hotels-button" v-on:click="searchHotels">Search Hotels</button>
+            
+        </div>
         </div>
 
-        <button type="submit" class="button hotels-button" id="hotels-button" v-on:click="searchHotels">Search Hotels</button>
+        <div class="content-right">
+            <img src="../assets/hotel.png" class="hotel-image">
+        </div>
+    
     </div>
+
+    
 </template>
 
 
@@ -82,6 +94,34 @@
 <style scoped>
 
     @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playwrite+IN:wght@100..400&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+    .content-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        /* gap: 0.5em; */
+    }
+
+    .content-left, .content-right {
+        padding: 1em;
+    }
+
+    .content-left{
+        margin-left: 2em;
+    }
+
+    .content-right {
+        flex: 1; /* Takes up available space */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hotel-image{
+        width: 300px;
+        height: 300px;
+    }
 
     .search-template{
         display: flex;
@@ -171,7 +211,15 @@
     }
 
     .hotels-button:hover{
-        background-color: #9ACBD0;
+        background-color: #48a6a7;
         cursor: pointer;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+        transform: translateY(-2px);
+    }
+
+    #destination:focus, #checkin-date:focus, checkout-date:focus, #adults:focus, #children:focus{
+        outline: none;
+        border: 2px solid #48a6a7;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     }
 </style>

@@ -155,4 +155,10 @@ async function signup(){
         cursor: pointer;
         border-radius: 15px;
     }
+
+    .signin-button:hover{
+        background-color: #48A6A7;
+        cursor: pointer;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
 </style>

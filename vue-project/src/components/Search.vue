@@ -34,6 +34,8 @@
         <button type="submit" id="search-button" class="button search-button" v-on:click="searchFlights">Search</button>
     </div>
 
+    <div class="background-image"></div>
+
     <!-- Best Flights -->
     <div class="search-results" v-if="bestFlights && bestFlights.length > 0">
         <h2 class="search-results-heading">Best Flights</h2>
@@ -231,6 +233,7 @@
         align-items: center;
         margin-top: 1.5em;
         margin-bottom: 1.5em;
+        
     }
 
     .search-box-item{
@@ -254,6 +257,12 @@
         border-radius: 5px;
         padding: 0.5em;
     }
+    
+    #departure-box:focus, #arrival-box:focus, #date:focus{
+        outline: none;
+        border: 2px solid #48a6a7;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
 
     .deaparture-suggestions, .arrival-suggestions{
         background-color: white;
@@ -275,11 +284,14 @@
         border: 1px solid #48a6a7;
         color: #000000;
         width: max-content;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     }
 
     .search-button:hover{
-        background-color: #9ACBD0;
+        background-color: #48a6a7;
         cursor: pointer;
+         /* Shadow effect */
+        transform: translateY(-2px);
     }
 
     .arrow-icon{
@@ -298,6 +310,18 @@
     .search-results-heading{
         font-family: "Noto Serif", serif;
         font-size: 2em;
+    }
+
+    .background-image{
+        background-image: url("../assets/plane.png");
+        width: 250px;
+        height: 250px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2em;
     }
 
     .flight-card{
