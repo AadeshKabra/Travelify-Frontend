@@ -39,6 +39,7 @@
     .heading{
         font-family: "Noto Serif", serif;
         font-size: 2em;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
     }
 
     .get-iternary-button{

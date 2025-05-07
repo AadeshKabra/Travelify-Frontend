@@ -7,6 +7,7 @@ import Search from './components/Search.vue';
 <template>
   <Navbar class="navbar-section"></Navbar>
   <router-view> </router-view>
+  
 </template>
 
 <style scoped>

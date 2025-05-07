@@ -1,6 +1,8 @@
 <template>
     <div class="nav">
-        <h2 class="title">Travelify</h2>
+        <h2 class="title">
+            <router-link to="/" class="name">Travelify</router-link>
+        </h2>
         <div class="search-flights">
             <router-link to="/search-flights" class="search-route">Flights</router-link>
         </div>
@@ -75,6 +77,11 @@ async function signup(){
         align-items: center;
         font-family: "Playwrite IN", cursive;
         font-optical-sizing: auto;
+    }
+
+    .name{
+        text-decoration: none;
+        color: #000000;
     }
 
     .search-route{
