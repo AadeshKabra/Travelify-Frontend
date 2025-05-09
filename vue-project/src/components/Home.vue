@@ -3,8 +3,8 @@
         <div class="background-image"></div>
         <div class="content-wrapper">
             <div class="section-1">
-                <h2 class="heading">Generate your customised travel iternary...</h2>
-                <button class="get-iternary-button button" v-on:click="getIternary">Get Iternary</button>
+                <h2 class="heading">Generate your customised travel itinerary...</h2>
+                <button class="get-iternary-button button" v-on:click="getIternary">Get Itinerary</button>
             </div>
         </div>
     </div>
