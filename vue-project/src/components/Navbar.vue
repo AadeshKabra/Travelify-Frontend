@@ -19,7 +19,7 @@
         </div>
         <div class="signin" v-else>
             <button id="sign-up" class="signin-button" @click="signup">Sign Up</button>
-            <button id="log-in" class="signin-button">Login</button>
+            <button id="log-in" class="signin-button" @click="signup">Login</button>
         </div>
         
     </div>
